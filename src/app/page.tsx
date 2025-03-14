@@ -1,21 +1,12 @@
-import Link from "next/link";
 import React from "react";
-import { getTodos } from "../../api/todo-api";
+import TodoForm from "../../components/todo/TodoForm";
+import TodoList from "../../components/todo/TodoList";
 
 const Homepage = async () => {
-  const todos = await getTodos();
-
   return (
-    <div>
-      HomePage
-      <Link href="/detail">Detail Page</Link>
-      <ul>
-        {todos.map(({ id, text, completed }) => (
-          <li key={id}>
-            {text} {completed ? "(Completed)" : "(Pending)"}
-          </li>
-        ))}
-      </ul>
+    <div className="container p-2">
+      <TodoList />
+      <TodoForm />
     </div>
   );
 };
