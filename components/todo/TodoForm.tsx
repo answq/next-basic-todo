@@ -1,25 +1,35 @@
-import React from 'react'
-import { createTodo } from '../../api/todo-api';
+import React from "react";
+import { createTodo } from "../../api/todo-api";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 const TodoForm = () => {
-    const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-        const form = e.currentTarget;
-        const formData = new FormData(form);
-        const todoText = formData.get("todo-text") as string;
-        
-        await createTodo(todoText);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const todoText = formData.get("todo-text") as string;
 
-        form.reset();
-    }
+    await createTodo(todoText);
+
+    form.reset();
+  };
 
   return (
-    <form onSubmit={onSubmit}>
-        <input type='text' name='todo-text' required/>
-        <button type='submit'>추가하기</button>
+    <form
+      onSubmit={onSubmit}
+      className="flex w-full items-center space-x-2 bg-gray-100 p-3 rounded-md"
+    >
+      <Input
+        type="text"
+        name="todo-text"
+        required
+        placeholder="할 일을 입력하세요."
+      />
+      <Button type="submit">추가하기</Button>
     </form>
-  )
-}
+  );
+};
 
 export default TodoForm;
