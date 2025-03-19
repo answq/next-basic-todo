@@ -1,13 +1,15 @@
-import React from "react";
-import { getTodos } from "../../api/todo-api";
-import TodoItem from "./TodoItem";
+"use client";
 
-const TodoList = async () => {
-  const todos = await getTodos();
+import React from "react";
+import TodoItem from "./TodoItem";
+import useTodoQuery from "../../query/useTodoQuery";
+
+const TodoList = () => {
+  const { data: todos } = useTodoQuery();
 
   return (
     <ul className="space-y-2">
-      {todos.map((todo) => (
+      {todos?.map((todo) => (
         <li key={todo.id}>
           <TodoItem todo={todo} />
         </li>

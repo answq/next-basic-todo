@@ -2,16 +2,18 @@
 
 import React from "react";
 import { Todo } from "../../types/todo.type";
-import { deleteTodo, toggleTodoCompleted } from "../../api/todo-api";
+import { deleteTodo } from "../../api/todo-api";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { useToggleTodoMutation } from "../../query/useTodoMutation";
 
 interface TodoItemProps {
   todo: Todo;
 }
 
 const TodoItem = ({ todo }: TodoItemProps) => {
+  const { mutate: toggleTodoCompleted } = useToggleTodoMutation();
   const { completed, id, text } = todo;
 
   return (
@@ -25,7 +27,7 @@ const TodoItem = ({ todo }: TodoItemProps) => {
 
       <div className="space-x-2">
         <Button
-          onClick={() => toggleTodoCompleted(id, !completed)}
+          onClick={() => toggleTodoCompleted({ id, completed: !completed })}
           variant="outline"
         >
           {completed ? "취소" : "완료"}
