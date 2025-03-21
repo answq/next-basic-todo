@@ -2,10 +2,12 @@
 
 import React from "react";
 import TodoItem from "./TodoItem";
-import useTodoQuery from "../../query/useTodoQuery";
+import { useTodoFilterStore } from "../../store/useTodoFilterStore";
+import { useTodoQuery } from "../../query/useTodoQuery";
 
 const TodoList = () => {
-  const { data: todos } = useTodoQuery();
+  const { filter } = useTodoFilterStore();
+  const { data: todos } = useTodoQuery(filter);
 
   return (
     <ul className="space-y-2">

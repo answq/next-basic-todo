@@ -9,8 +9,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@radix-ui/react-alert-dialog";
-
+} from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { useDeleteTodoMutation } from "../../query/useTodoMutation";
 
